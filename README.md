@@ -82,6 +82,8 @@ The complete working of the system is visually explained in the flow diagram bel
 
 diagrams/system_flow.svg
 
+![System Flow Diagram](system_flow_diagram/system_flow.svg)
+
 This diagram represents:
 - Input handling
 - Validation decision
@@ -164,10 +166,9 @@ This deployment is intended for demonstration purposes.
 
 ---
 
-
 ## Note
 
 This repository represents a Round 1 prototype intended for demonstration and evaluation purposes.
 <br/>
 
-Authors : Shreeyash Raajendran Kurupath , Mohd Uvais Ahmed , Mohammad Rayyan Farooqui , Mujtaba hassan 
+Authors : Shreeyash Raajendran Kurupath , Mohd Uvais Ahmed , Mohammad Rayyan Farooqui , Mujtaba hassan
