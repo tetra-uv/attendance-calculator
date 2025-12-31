@@ -82,7 +82,7 @@ The complete working of the system is visually explained in the flow diagram bel
 
 diagrams/system_flow.svg
 
-![System Flow Diagram](system_flow_diagram/system_flow.svg)
+![System Flow Diagram](System_flow_diagram/system_flow.svg)
 
 This diagram represents:
 - Input handling
