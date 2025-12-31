@@ -80,7 +80,7 @@ The system follows a clear and logical flow:
 
 The complete working of the system is visually explained in the flow diagram below:
 
-diagrams/system_flow.svg
+System_flow_diagram/system_flow.svg
 
 ![System Flow Diagram](System_flow_diagram/system_flow.svg)
 
