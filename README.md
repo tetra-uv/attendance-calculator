@@ -141,7 +141,7 @@ attendance_calculator/
 ├── CONTRIBUTING.md
 ├── .gitignore
 │
-└── diagrams/
+└── System_flow_diagram/
     └── system_flow.svg
 
 ---
