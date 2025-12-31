@@ -130,22 +130,6 @@ These improvements aim to bring the system closer to real-world accuracy.
 
 ---
 
-## Project Structure
-
-attendance_calculator/
-│
-├── app.py
-├── backend.py
-├── README.md
-├── requirements.txt
-├── CONTRIBUTING.md
-├── .gitignore
-│
-└── System_flow_diagram/
-    └── system_flow.svg
-
----
-
 ## Running the Project Locally
 
 Install dependencies:
