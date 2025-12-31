@@ -170,4 +170,4 @@ This deployment is intended for demonstration purposes.
 This repository represents a Round 1 prototype intended for demonstration and evaluation purposes.
 <br/>
 
-Authors : Shreeyash Raajendran Kurupat , Mohd Uvais Ahmed , Mohammad Rayyan Farooqui , Mujtaba hassan 
+Authors : Shreeyash Raajendran Kurupath , Mohd Uvais Ahmed , Mohammad Rayyan Farooqui , Mujtaba hassan 
