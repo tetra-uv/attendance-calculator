@@ -156,6 +156,18 @@ streamlit run app.py
 
 ---
 
+## Live Demo
+
+The prototype is deployed and accessible here:https://attendance-calculator-djqnxaygyglkzeuefat32l.streamlit.app/
+
+This deployment is intended for demonstration purposes.
+
+---
+
+
 ## Note
 
 This repository represents a Round 1 prototype intended for demonstration and evaluation purposes.
+<br/>
+
+Authors : Shreeyash Raajendran Kurupat , Mohd Uvais Ahmed , Mohammad Rayyan Farooqui , Mujtaba hassan 
