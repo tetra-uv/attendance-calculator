@@ -1,159 +1,192 @@
-# Attendance Calculator – Prototype (Round 1)
+# Attendance Calculator – System Design & Prototype (Round 1 & Round 2)
 
 ## Problem Statement
 
 In most colleges and universities, students are required to maintain a minimum attendance percentage (commonly 75%) to be eligible for examinations.
 
-In reality, students often face the following problems:
-- Attendance portals only show percentages, not clear guidance.
-- Students do not know how many classes they must attend going forward.
-- There is confusion about how many classes can be missed without risk.
-- This uncertainty causes stress, panic, and poor planning.
+In practice, students face multiple issues:
+- Attendance portals show only percentages, not actionable guidance
+- Students do not know how many classes they must attend going forward
+- There is uncertainty about how many classes can be missed safely
+- This lack of clarity leads to stress, panic, and poor attendance planning
 
-There is a clear gap between raw attendance data and meaningful, actionable insight.
-
----
-
-## Our Solution
-
-The Attendance Calculator is a simple web-based prototype that converts attendance data into clear decisions.
-
-Instead of showing only percentages, the system answers practical questions such as:
-- How many classes must be attended from now?
-- How many classes can be missed without falling below the required attendance?
-- Is the student currently safe or at risk?
-
-The goal is clarity, not complexity.
+There exists a clear gap between raw attendance data and meaningful, decision-oriented insight.
 
 ---
 
-## What the Prototype Does
+## Project Objective
 
-This prototype allows a student to:
-- Enter semester start and end dates
-- Provide a weekly class schedule
-- Input current attendance percentage
-- Set the minimum required attendance percentage
+The objective of this project is to bridge that gap by translating attendance data into clear, practical answers:
+- How many classes must be attended from now on?
+- How many classes can still be missed?
+- Is the student currently safe, at risk, or beyond recovery?
 
-Based on these inputs, the system calculates:
-- Total classes in the semester
-- Classes completed so far
-- Classes attended
-- Remaining classes
-- Classes that must be attended
-- Classes that can be missed
-- A clear SAFE or WARNING status
+The focus is on clarity, correctness, and responsible planning.
 
 ---
 
-## Responsible Use of the Term “Bunk”
+## Round 1: Prototype Overview (Proof of Concept)
 
-In this project, the word “bunk” is used in a practical and responsible sense.
+### Purpose of Round 1
 
-It does not promote irresponsible skipping of classes. Instead, it represents flexibility that students may need for:
-- Health-related breaks
-- Mental fatigue or burnout
-- Personal or family situations
-- Managing the demanding and chaotic nature of college life
+Round 1 was designed as a rapid proof-of-concept to validate:
+- The core idea
+- Attendance prediction feasibility
+- User understanding of results
 
-The purpose of this tool is to help students plan responsibly within institutional attendance rules, not to encourage absence.
+### Technology Used (Round 1)
 
----
+- Python
+- Streamlit (rapid UI prototyping)
 
-## System Working and Flow
+Streamlit was intentionally used to quickly demonstrate logic without full system architecture.
 
-The system follows a clear and logical flow:
+### Capabilities (Round 1)
 
-1. The user enters semester dates, weekly schedule, and attendance details.
-2. The system validates all inputs for logical correctness.
-3. If inputs are invalid, an error is shown immediately.
-4. If inputs are valid:
-   - Total semester classes are calculated.
-   - Completed and remaining classes are derived.
-   - Required future attendance is computed.
-   - A SAFE or WARNING result is generated.
-5. The calculated results are displayed back to the user.
+- Semester start and end date input
+- Weekly schedule input
+- Current attendance percentage input
+- Required attendance percentage input
+- SAFE / WARNING status output
 
----
-
-## System Flow Diagram
-
-The complete working of the system is visually explained in the flow diagram below:
+### System Flow Diagram (Round 1)
 
 System_flow_diagram/system_flow.svg
 
-![System Flow Diagram](System_flow_diagram/system_flow.svg)
+---
 
-This diagram represents:
-- Input handling
-- Validation decision
-- Core calculation logic
-- Error handling path
-- Final result output
+## Why Round 2 Was Needed
+
+Round 1 relied on ideal assumptions and had limitations:
+- Weekly approximations instead of real calendar dates
+- No holiday handling
+- Limited UI control
+- Monolithic design unsuitable for scaling
+
+Round 2 focuses on correctness, extensibility, and system-level design.
 
 ---
 
-## Why This Project Matters
+## Round 2: Architecture & Enhancements
 
-Students think in terms of classes, not percentages.
+### Architectural Transition
 
-By translating attendance rules into clear numbers, this tool:
-- Reduces confusion
-- Prevents last-minute panic
-- Helps students plan attendance calmly and responsibly
+Round 1 used a Streamlit-based prototype.  
+Round 2 uses a custom frontend with a stateless backend API.
 
-The prototype focuses on real student needs rather than complex features.
-
----
-
-## Technology Stack
-
-- Python
-- Streamlit (for user interface)
-- Modular backend logic
+This transition enables:
+- Clear separation of frontend and backend
+- Better UI/UX control
+- Improved accuracy
+- Scalability and future extensibility
 
 ---
 
-## Planned Improvements for Round 2
+## Technology Stack (Round 2)
 
-This prototype assumes an ideal scenario where students already know their exact attendance percentage. In real situations, this is often inaccurate.
+### Frontend
 
-Planned improvements include:
-- Manual marking of present and absent classes
-- Extra and compensatory class handling
-- Attendance percentage calculation based on user-entered data
-- Holiday and cancelled class support
-- OCR-based timetable extraction from PDFs or images
-- Subject-wise attendance tracking
+Located in:
+frontend/
+├── index.html
+├── style.css
+└── script.js
 
-These improvements aim to bring the system closer to real-world accuracy.
+- Built using HTML, CSS, and JavaScript
+- No framework dependency
+- Lightweight and user-friendly
+- Optional subject-wise input without breaking core workflow
 
----
+### Backend
 
+Located at:
+backend.py
 
-## Running the Project Locally
-
-Install dependencies:
-
-pip install -r requirements.txt
-
-Run the app:
-
-streamlit run app.py
+- Python with FastAPI
+- Stateless REST API
+- Endpoint: POST /calculate
+- CORS-enabled for frontend integration
 
 ---
 
-## Live Demo
+## Core Backend Improvements (Round 2)
 
-The prototype is deployed and accessible here:https://attendance-calculator-djqnxaygyglkzeuefat32l.streamlit.app/
+### Date-Accurate Class Counting
+- Day-by-day calendar iteration
+- Handles mid-week semester starts and cutoffs
+- Removes weekly approximation errors
 
-This deployment is intended for demonstration purposes.
+### Holiday Awareness
+- Predefined holiday configuration
+- Automatically excluded from class counting
+- No additional user input required
+
+### Strict Academic Rounding
+- Attended classes are floored
+- Required classes are ceiled
+- Prevents over-crediting attendance
+
+### Optional Subject-Wise Input
+- Subject-wise entry is optional
+- Core calculations work without subject data
+- Improves accuracy without increasing user burden
+
+---
+
+## System Architecture & Data Flow Diagram (Round 2)
+
+The complete DFD Level-1 for Round 2 is available at:
+
+System_flow_diagram/system_architecture_round2_dfd.svg
+
+This diagram illustrates:
+- User, frontend, and backend interaction
+- Sequential backend processing
+- Static holiday data usage
+- Clear data flow paths
+- Future extensibility points
+
+---
+
+## Scalability and Reliability
+
+The Round 2 design supports growth through:
+- Stateless backend architecture
+- Independent frontend and backend components
+- Clear responsibility separation
+- Horizontal backend scaling capability
+- Isolated failure domains
+
+---
+
+## Repository Structure
+
+attendance_calculator/
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+├── System_flow_diagram/
+│   ├── system_flow.svg
+│   └── system_architecture_round2_dfd.svg
+├── backend.py
+├── app.py
+├── requirements.txt
+├── README.md
+└── .gitignore
+
+---
+
+## Team Contributions
+
+- Shreeyash Raajendran Kurupath – System design, logic planning, documentation
+- Mohd Uvais Ahmed – Frontend development, UX flow, integration
+- Mohammad Rayyan Farooqui – Backend logic, API implementation
+- Mujtaba Hassan – Testing, validation, documentation support
 
 ---
 
 ## Note
 
-This repository represents a Round 1 prototype intended for demonstration and evaluation purposes.
-<br/>
-
-Authors : Shreeyash Raajendran Kurupath , Mohd Uvais Ahmed , Mohammad Rayyan Farooqui , Mujtaba hassan
+This repository demonstrates the evolution from a proof-of-concept (Round 1) to a structured and scalable system design (Round 2).  
+All calculations are indicative and intended for planning assistance. Final attendance decisions remain subject to institutional rules.
