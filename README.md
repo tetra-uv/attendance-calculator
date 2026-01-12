@@ -1,166 +1,113 @@
-# Attendance Calculator – System Design & Prototype (Round 1 & Round 2)
+# Attendance Calculator – Smart Attendance Planning System
+
+## Introduction
+In most colleges and universities, students are required to maintain a minimum attendance percentage, commonly around 75 percent, to be eligible for examinations. However, attendance portals typically present only a percentage value, which does not help students make informed decisions.
+
+This project addresses that gap by transforming raw attendance data into clear, actionable insights that help students plan their attendance responsibly and without panic.
+
+---
 
 ## Problem Statement
-
-In most colleges and universities, students are required to maintain a minimum attendance percentage (commonly 75%) to be eligible for examinations.
-
-In practice, students face multiple issues:
-- Attendance portals show only percentages, not actionable guidance
+Students frequently face the following issues:
+- Attendance systems show only percentages, not actionable guidance
 - Students do not know how many classes they must attend going forward
 - There is uncertainty about how many classes can be missed safely
-- This lack of clarity leads to stress, panic, and poor attendance planning
+- Lack of clarity leads to stress, poor planning, and last-minute panic
 
-There exists a clear gap between raw attendance data and meaningful, decision-oriented insight.
+There is a clear disconnect between attendance data and meaningful decision-making support.
 
 ---
 
 ## Project Objective
-
-The objective of this project is to bridge that gap by translating attendance data into clear, practical answers:
-- How many classes must be attended from now on?
-- How many classes can still be missed?
+The objective of this project is to convert attendance data into practical, decision-oriented answers:
+- How many classes must be attended from now on to meet eligibility criteria?
+- How many classes can still be missed without falling below the requirement?
 - Is the student currently safe, at risk, or beyond recovery?
 
-The focus is on clarity, correctness, and responsible planning.
+The system focuses on clarity, correctness, and responsible academic planning.
 
 ---
 
-## Round 1: Prototype Overview (Proof of Concept)
+## Project Evolution
 
-### Purpose of Round 1
+### Round 1 – Proof of Concept
+Round 1 was developed as a rapid proof-of-concept to validate the idea and the feasibility of attendance prediction.
 
-Round 1 was designed as a rapid proof-of-concept to validate:
-- The core idea
-- Attendance prediction feasibility
-- User understanding of results
-
-### Technology Used (Round 1)
-
+**Technology Used**
 - Python
-- Streamlit (rapid UI prototyping)
+- Streamlit
 
-Streamlit was intentionally used to quickly demonstrate logic without full system architecture.
-
-### Capabilities (Round 1)
-
+**Key Capabilities**
 - Semester start and end date input
-- Weekly schedule input
+- Weekly timetable input
 - Current attendance percentage input
 - Required attendance percentage input
-- SAFE / WARNING status output
+- SAFE / WARNING status indication
 
-### System Flow Diagram (Round 1)
-
-System_flow_diagram/system_flow.svg
-
----
-
-## Why Round 2 Was Needed
-
-Round 1 relied on ideal assumptions and had limitations:
-- Weekly approximations instead of real calendar dates
-- No holiday handling
+**Limitations of Round 1**
+- Relied on weekly approximations instead of real calendar dates
+- Did not account for holidays
+- Monolithic architecture unsuitable for scaling
 - Limited UI control
-- Monolithic design unsuitable for scaling
-
-Round 2 focuses on correctness, extensibility, and system-level design.
 
 ---
 
-## Round 2: Architecture & Enhancements
+### Round 2 – System Design and Architectural Enhancement
+Round 2 focuses on correctness, scalability, and clean system design. The architecture was redesigned to separate concerns and improve long-term maintainability.
 
-### Architectural Transition
-
-Round 1 used a Streamlit-based prototype.  
-Round 2 uses a custom frontend with a stateless backend API.
-
-This transition enables:
-- Clear separation of frontend and backend
-- Better UI/UX control
-- Improved accuracy
-- Scalability and future extensibility
+**Major Improvements**
+- Transition from Streamlit to a custom frontend
+- Introduction of a stateless backend API
+- Accurate date-based class counting
+- Holiday-aware attendance calculation
+- Academic-grade rounding rules
 
 ---
 
 ## Technology Stack (Round 2)
 
 ### Frontend
+- HTML
+- CSS
+- JavaScript
 
-Located in:
-frontend/
-├── index.html
-├── style.css
-└── script.js
-
-- Built using HTML, CSS, and JavaScript
-- No framework dependency
-- Lightweight and user-friendly
-- Optional subject-wise input without breaking core workflow
+The frontend is lightweight, framework-independent, and designed for clarity and ease of use. Subject-wise input is optional and does not disrupt the core workflow.
 
 ### Backend
+- Python
+- FastAPI
 
-Located at:
-backend.py
-
-- Python with FastAPI
-- Stateless REST API
-- Endpoint: POST /calculate
-- CORS-enabled for frontend integration
+The backend exposes a stateless REST API with a `POST /calculate` endpoint. CORS is enabled to allow seamless frontend integration.
 
 ---
 
-## Core Backend Improvements (Round 2)
-
-### Date-Accurate Class Counting
-- Day-by-day calendar iteration
-- Handles mid-week semester starts and cutoffs
-- Removes weekly approximation errors
-
-### Holiday Awareness
-- Predefined holiday configuration
-- Automatically excluded from class counting
-- No additional user input required
-
-### Strict Academic Rounding
-- Attended classes are floored
-- Required classes are ceiled
-- Prevents over-crediting attendance
-
-### Optional Subject-Wise Input
-- Subject-wise entry is optional
-- Core calculations work without subject data
-- Improves accuracy without increasing user burden
+## Core System Features
+- Day-by-day calendar iteration for accurate class counting
+- Automatic exclusion of predefined holidays
+- Optional subject-wise attendance input
+- Strict academic rounding:
+  - Attended classes are floored
+  - Required classes are ceiled
+- Clear status classification:
+  - SAFE
+  - WARNING
+  - CRITICAL
 
 ---
 
-## System Architecture & Data Flow Diagram (Round 2)
+## System Architecture and Data Flow
+The system architecture follows a clean separation of responsibilities:
+- User interacts with the frontend
+- Frontend sends structured input to the backend API
+- Backend processes data using calendar-based logic and holiday rules
+- Backend returns computed attendance guidance
+- Frontend presents clear results to the user
 
-The complete DFD Level-1 for Round 2 is available at:
-
-System_flow_diagram/system_architecture_round2_dfd.svg
-
-This diagram illustrates:
-- User, frontend, and backend interaction
-- Sequential backend processing
-- Static holiday data usage
-- Clear data flow paths
-- Future extensibility points
-
----
-
-## Scalability and Reliability
-
-The Round 2 design supports growth through:
-- Stateless backend architecture
-- Independent frontend and backend components
-- Clear responsibility separation
-- Horizontal backend scaling capability
-- Isolated failure domains
+Detailed system flow and Data Flow Diagrams (DFD) are included in the repository for reference.
 
 ---
 
 ## Repository Structure
-
 attendance_calculator/
 ├── frontend/
 │   ├── index.html
@@ -177,16 +124,22 @@ attendance_calculator/
 
 ---
 
-## Team Contributions
-
-- Shreeyash Raajendran Kurupath – System design, logic planning, documentation
-- Mohd Uvais Ahmed – Frontend development, UX flow, integration
-- Mohammad Rayyan Farooqui – Backend logic, API implementation
-- Mujtaba Hassan – Testing, validation, documentation support
+## Scalability and Reliability
+The Round 2 architecture is designed for future growth:
+- Stateless backend allows horizontal scaling
+- Frontend and backend can be deployed independently
+- Clear separation of concerns improves maintainability
+- Architecture supports future feature expansion
 
 ---
 
-## Note
+## Team Contributions
+- Shreeyash Raajendran Kurupath – System design, logic planning, documentation
+- Mohd Uvais Ahmed – Frontend development, UX flow, integration
+- Mohammad Rayyan Farooqui – Backend logic and API implementation
+- Mujtaba Hassan – Testing, validation, and documentation support
 
-This repository demonstrates the evolution from a proof-of-concept (Round 1) to a structured and scalable system design (Round 2).  
-All calculations are indicative and intended for planning assistance. Final attendance decisions remain subject to institutional rules.
+---
+
+## Disclaimer
+All calculations provided by this system are indicative and intended solely for planning assistance. Final attendance eligibility is subject to institutional rules and regulations.
