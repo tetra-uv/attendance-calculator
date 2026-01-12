@@ -177,7 +177,6 @@ attendance_calculator/
 
 ---
 
-
 ## Team Contributions
 
 - Shreeyash Raajendran Kurupath – System design, logic planning, documentation
